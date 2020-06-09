@@ -22,7 +22,9 @@ class RecipeListViewController: UIViewController {
                 let data = try Data(contentsOf: url)
                 let decoder = JSONDecoder()
                 let recipeList = try decoder.decode(Recipes.self, from: data)
-                print(recipeList.recipes.first?.name)
+                
+                self.recipes = recipeList.recipes
+                recipeListTableView.reloadData()
                 
             } catch {
                 print("Error")
@@ -81,6 +83,8 @@ extension RecipeListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeListTableViewCell", for: indexPath) as! RecipeListTableViewCell
+        
+        cell.recipeNameLabel.text = recipes[indexPath.row].name
         
         return cell
     }
