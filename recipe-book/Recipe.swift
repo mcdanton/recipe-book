@@ -22,7 +22,7 @@ class Recipes : Codable {
 
 class Recipe : Codable {
     
-    var id: Int
+    var id: String
     var name: String
     var imageUrl: String?
     var reviewCount: Int
@@ -30,7 +30,7 @@ class Recipe : Codable {
     var servings: String?
     
     
-    init(id: Int, name: String, imageUrl: String?, reviewCount: Int, cookTime: String?, servings: String?) {
+    init(id: String, name: String, imageUrl: String?, reviewCount: Int, cookTime: String?, servings: String?) {
         self.id = id
         self.name = name
         self.imageUrl = imageUrl

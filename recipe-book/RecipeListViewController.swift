@@ -17,17 +17,13 @@ class RecipeListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let path = Bundle.main.path(forResource: "recipes", ofType: "json") {
+        if let url = Bundle.main.url(forResource: "recipes", withExtension: "json") {
             do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
-                print("foo")
-                if let jsonResult = jsonResult as? [String: Any], let recipes = jsonResult["recipes"] as? [Any] {
-                    
-                    
-                    
-                    
-                }
+                let data = try Data(contentsOf: url)
+                let decoder = JSONDecoder()
+                let recipeList = try decoder.decode(Recipes.self, from: data)
+                print(recipeList.recipes.first?.name)
+                
             } catch {
                 print("Error")
             }
