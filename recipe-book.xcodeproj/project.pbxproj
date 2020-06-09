@@ -15,6 +15,8 @@
 		376166DC248FD781006BA2F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 376166DA248FD781006BA2F5 /* LaunchScreen.storyboard */; };
 		376166E4248FD9AB006BA2F5 /* RecipeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376166E3248FD9AB006BA2F5 /* RecipeListViewController.swift */; };
 		376166E6248FDAD4006BA2F5 /* RecipeListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376166E5248FDAD3006BA2F5 /* RecipeListTableViewCell.swift */; };
+		376166E8248FDF14006BA2F5 /* recipes.json in Resources */ = {isa = PBXBuildFile; fileRef = 376166E7248FDF14006BA2F5 /* recipes.json */; };
+		376166EA248FDF28006BA2F5 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376166E9248FDF28006BA2F5 /* Recipe.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		376166DD248FD781006BA2F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		376166E3248FD9AB006BA2F5 /* RecipeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListViewController.swift; sourceTree = "<group>"; };
 		376166E5248FDAD3006BA2F5 /* RecipeListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListTableViewCell.swift; sourceTree = "<group>"; };
+		376166E7248FDF14006BA2F5 /* recipes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = recipes.json; sourceTree = "<group>"; };
+		376166E9248FDF28006BA2F5 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +73,8 @@
 				376166DD248FD781006BA2F5 /* Info.plist */,
 				376166E3248FD9AB006BA2F5 /* RecipeListViewController.swift */,
 				376166E5248FDAD3006BA2F5 /* RecipeListTableViewCell.swift */,
+				376166E7248FDF14006BA2F5 /* recipes.json */,
+				376166E9248FDF28006BA2F5 /* Recipe.swift */,
 			);
 			path = "recipe-book";
 			sourceTree = "<group>";
@@ -134,6 +140,7 @@
 				376166DC248FD781006BA2F5 /* LaunchScreen.storyboard in Resources */,
 				376166D9248FD781006BA2F5 /* Assets.xcassets in Resources */,
 				376166D7248FD77D006BA2F5 /* Main.storyboard in Resources */,
+				376166E8248FDF14006BA2F5 /* recipes.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +154,7 @@
 				376166E4248FD9AB006BA2F5 /* RecipeListViewController.swift in Sources */,
 				376166E6248FDAD4006BA2F5 /* RecipeListTableViewCell.swift in Sources */,
 				376166D4248FD77D006BA2F5 /* ViewController.swift in Sources */,
+				376166EA248FDF28006BA2F5 /* Recipe.swift in Sources */,
 				376166D0248FD77D006BA2F5 /* AppDelegate.swift in Sources */,
 				376166D2248FD77D006BA2F5 /* SceneDelegate.swift in Sources */,
 			);

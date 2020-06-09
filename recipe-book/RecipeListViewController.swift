@@ -12,11 +12,60 @@ class RecipeListViewController: UIViewController {
     
     @IBOutlet weak var recipeListTableView: UITableView!
     
-    
+    var recipes = [Recipe]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let path = Bundle.main.path(forResource: "recipes", ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
+                print("foo")
+                if let jsonResult = jsonResult as? [String: Any], let recipes = jsonResult["recipes"] as? [Any] {
+                    
+                    
+                    
+                    
+                }
+            } catch {
+                print("Error")
+            }
+            
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /*
+        if let path = Bundle.main.path(forResource: "test", ofType: "json") {
+            do {
+                  let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                  let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
+                  if let jsonResult = jsonResult as? Dictionary<String, AnyObject>, let person = jsonResult["person"] as? [Any] {
+                            // do stuff
+                  }
+              } catch {
+                   // handle error
+              }
+        }
+        */
         recipeListTableView.dataSource = self
         recipeListTableView.delegate = self
         
@@ -31,7 +80,7 @@ extension RecipeListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return recipes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
