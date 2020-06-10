@@ -1,0 +1,28 @@
+{
+  "recipes": [
+    {
+      "id": "1",
+      "name": "Chicken",
+      "image_url": "chicken",
+      "review_count": 0,
+      "cook_time": "30 minutes",
+      "servings": "6"
+    },
+    {
+      "id": "2",
+      "name": "Steak",
+      "image_url": "steak",
+      "review_count": 0,
+      "cook_time": "30 minutes",
+      "servings": "2"
+    },
+    {
+      "id": "3",
+      "name": "Salmon",
+      "image_url": "salmon",
+      "review_count": 0,
+      "cook_time": "30 minutes",
+      "servings": "4"
+    }
+  ]
+}
