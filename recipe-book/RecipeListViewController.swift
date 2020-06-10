@@ -32,38 +32,6 @@ class RecipeListViewController: UIViewController {
             
         }
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        /*
-        if let path = Bundle.main.path(forResource: "test", ofType: "json") {
-            do {
-                  let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                  let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
-                  if let jsonResult = jsonResult as? Dictionary<String, AnyObject>, let person = jsonResult["person"] as? [Any] {
-                            // do stuff
-                  }
-              } catch {
-                   // handle error
-              }
-        }
-        */
         recipeListTableView.dataSource = self
         recipeListTableView.delegate = self
         
@@ -85,7 +53,10 @@ extension RecipeListViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeListTableViewCell", for: indexPath) as! RecipeListTableViewCell
         
         cell.recipeNameLabel.text = recipes[indexPath.row].name
-        
+        if let imageUrl = recipes[indexPath.row].imageUrl {
+            cell.recipeImageView.image = UIImage(named: imageUrl)
+        }
+
         return cell
     }
     
