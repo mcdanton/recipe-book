@@ -21,7 +21,9 @@ class AddRecipeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        self.navigationItem.title = recipe?.name
+
         recipeNameLabel.text = recipe?.name
     }
     

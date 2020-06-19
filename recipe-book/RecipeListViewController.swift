@@ -16,7 +16,9 @@ class RecipeListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
+        self.navigationItem.title = "Recipes"
+
         if let url = Bundle.main.url(forResource: "recipes", withExtension: "json") {
             do {
                 let data = try Data(contentsOf: url)
@@ -64,12 +66,10 @@ extension RecipeListViewController: UITableViewDataSource {
         
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let addRecipeVC = storyBoard.instantiateViewController(withIdentifier: "AddRecipeViewController") as! AddRecipeViewController
-        let navController = UINavigationController(rootViewController: addRecipeVC)
-        navController.modalPresentationStyle = .fullScreen
 
         addRecipeVC.recipe = recipes[indexPath.row]
         
-        self.present(navController, animated: true, completion: nil)
+        self.navigationController?.pushViewController(addRecipeVC, animated: true)
         
         
     }
