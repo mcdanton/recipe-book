@@ -17,15 +17,47 @@ class AddRecipeViewController: UIViewController {
     @IBOutlet weak var recipeIngredientsTextView: UITextView!
     @IBOutlet weak var recipeInstructionsTextView: UITextView!
     
-    lazy var recipe: Recipe? = nil
+    let viewModel: AddRecipeViewModel
+    
+    init?(coder: NSCoder, viewModel: AddRecipeViewModel) {
+        self.viewModel = viewModel
+        super.init(coder: coder)
+    }
+    
+    init(viewModel: AddRecipeViewModel) {
+        self.viewModel = viewModel
+
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationItem.title = recipe?.name
+        self.navigationItem.title = viewModel.recipe.name
+        
+        setupViews()
 
-        recipeNameLabel.text = recipe?.name
     }
     
+    
+    func setupViews() {
+        if let imageUrl = viewModel.recipe.imageUrl {
+            recipeImageView.image = UIImage(named: imageUrl)
+        }
+        recipeNameLabel.text = viewModel.recipe.name
+        recipeCookTimeLabel.text = viewModel.recipe.cookTime
+        
+        recipeEditImageButton.addTarget(self, action: #selector(editRecipeImage), for: .touchUpInside)
+    }
+    
+    @objc
+    func editRecipeImage() {
+        //TODO: Add Handler for edit image button
+        print("Edit Recipe Tapped")
+    }
 
 }

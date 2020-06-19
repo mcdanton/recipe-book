@@ -12,26 +12,15 @@ class RecipeListViewController: UIViewController {
     
     @IBOutlet weak var recipeListTableView: UITableView!
     
-    var recipes = [Recipe]()
+    var viewModel = RecipeListViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
                 
         self.navigationItem.title = "Recipes"
 
-        if let url = Bundle.main.url(forResource: "recipes", withExtension: "json") {
-            do {
-                let data = try Data(contentsOf: url)
-                let decoder = JSONDecoder()
-                let recipeList = try decoder.decode(Recipes.self, from: data)
-                
-                self.recipes = recipeList.recipes
-                recipeListTableView.reloadData()
-                
-            } catch {
-                print("Error")
-            }
-            
+        viewModel.fetchRecipes {
+            recipeListTableView.reloadData()
         }
         
         recipeListTableView.dataSource = self
@@ -48,14 +37,14 @@ extension RecipeListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return recipes.count
+        return viewModel.recipes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeListTableViewCell", for: indexPath) as! RecipeListTableViewCell
         
-        cell.recipeNameLabel.text = recipes[indexPath.row].name
-        if let imageUrl = recipes[indexPath.row].imageUrl {
+        cell.recipeNameLabel.text = viewModel.recipes[indexPath.row].name
+        if let imageUrl = viewModel.recipes[indexPath.row].imageUrl {
             cell.recipeImageView.image = UIImage(named: imageUrl)
         }
 
@@ -64,12 +53,21 @@ extension RecipeListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let addRecipeVC = storyBoard.instantiateViewController(withIdentifier: "AddRecipeViewController") as! AddRecipeViewController
+        guard let addRecipeVC = storyboard?.instantiateViewController(identifier: "AddRecipeViewController", creator: { [unowned self] coder in
+            return AddRecipeViewController(coder: coder, viewModel: self.viewModel.addRecipeViewModel(indexPath: indexPath))
+        }) else {
+            fatalError("Failed to load AddRecipeViewController.")
+        }
 
-        addRecipeVC.recipe = recipes[indexPath.row]
+        navigationController?.pushViewController(addRecipeVC, animated: true)
         
-        self.navigationController?.pushViewController(addRecipeVC, animated: true)
+//        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+//
+//        let addRecipeVC = storyBoard.instantiateViewController(withIdentifier: "AddRecipeViewController") as! AddRecipeViewController
+//
+//        addRecipeVC.recipe = viewModel.recipes[indexPath.row]
+//
+//        self.navigationController?.pushViewController(addRecipeVC, animated: true)
         
         
     }
