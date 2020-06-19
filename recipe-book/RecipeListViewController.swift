@@ -60,8 +60,23 @@ extension RecipeListViewController: UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let addRecipeVC = storyBoard.instantiateViewController(withIdentifier: "AddRecipeViewController") as! AddRecipeViewController
+        let navController = UINavigationController(rootViewController: addRecipeVC)
+        navController.modalPresentationStyle = .fullScreen
+
+        addRecipeVC.recipe = recipes[indexPath.row]
+        
+        self.present(navController, animated: true, completion: nil)
+        
+        
+    }
+    
 }
 
 extension RecipeListViewController: UITableViewDelegate {
+    
     
 }

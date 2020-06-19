@@ -17,10 +17,12 @@ class AddRecipeViewController: UIViewController {
     @IBOutlet weak var recipeIngredientsTextView: UITextView!
     @IBOutlet weak var recipeInstructionsTextView: UITextView!
     
+    lazy var recipe: Recipe? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        recipeNameLabel.text = recipe?.name
     }
     
 
